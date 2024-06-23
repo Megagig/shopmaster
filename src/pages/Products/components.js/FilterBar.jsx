@@ -5,6 +5,7 @@ export function FilterBar (){
   const [categories, updateCategories] = useState([]);
 
   useEffect(() => {
+    //changed the url by moving the json to the public folder
     axios.get("products.json")
       .then(response => {
         console.log(response.data);

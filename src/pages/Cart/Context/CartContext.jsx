@@ -7,53 +7,64 @@ export const CartProvider = ({ children }) => {
     const [cartList, setCartList] = useState(localStorage.getItem('cartList') ? JSON.parse(localStorage.getItem('cartList')) : [])
 
   
-    const addToCart = (item) => {
+    const addToCartList = (item) => {
         console.log({item})
-        const isItemInCart = cartList.find((cartItem) => cartItem.id === item.id); // check if the item is already in the cart
-        console.log(isItemInCart)
+        const isItemInCart = cartList.find((cartItem) => cartItem.id == item.id); 
+        // check if the item is already in the cartList
         if (isItemInCart) {
         setCartList(
-            cartList.map((cartItem) => // if the item is already in the cart, increase the quantity of the item
-            cartItem.id === item.id
+            cartList.map((cartItem) => 
+                //check if the item is in the array, then update the quantity
+            cartItem.id == item.id
                 ? { ...cartItem, quantity: cartItem.quantity + 1 }
-                : cartItem // otherwise, return the cart item
+                //otherwise return the item unchanged
+                : cartItem 
             )
         );
         } else {
-        setCartList([...cartList, { ...item, quantity: 1 }]); // if the item is not in the cart, add the item to the cart
+            // if the item is not in the cartList, add the item to the cart
+        setCartList([...cartList, { ...item, quantity: 1 }]); 
         }
       };
 
 
-      const removeFromCart = (item) => {
-        const isItemInCart = cartList.find((cartItem) => cartItem.id === item.id);
+      const removeFromCartList = (item) => {
+        const isItemInCart = cartList.find((cartItem) => cartItem.id == item.id);
       
         if (isItemInCart.quantity === 1) {
-          setCartList(cartList.filter((cartItem) => cartItem.id !== item.id)); // if the quantity of the item is 1, remove the item from the cart
+            // if the quantity of the indexed item is 1, remove the item from the cartList
+          setCartList(cartList.filter((cartItem) => cartItem.id != item.id)); 
         } else {
           setCartList(
             cartList.map((cartItem) =>
-              cartItem.id === item.id
-                ? { ...cartItem, quantity: cartItem.quantity - 1 } // if the quantity of the item is greater than 1, decrease the quantity of the item
+                // if the quantity of the indexed item is greater than 1, decrease the quantity by -1
+              cartItem.id == item.id
+                ? { ...cartItem, quantity: cartItem.quantity - 1 } 
                 : cartItem
             )
           );
         }
       };
 
-      const clearCart = () => {
-        setCartList([]); // set the cart items to an empty array
+      const clearCartList = () => {
+        // set the cartList to an empty array
+        setCartList([]); 
       };
 
       const getCartTotal = () => {
-        return cartList.reduce((total, item) => total + item.price * item.quantity, 0); // calculate the total price of the items in the cart
+        // calculate the total price of the items in the cartList
+        return cartList.reduce((total, item) => total + item.price * item.quantity, 0); 
       };
 
       useEffect(() => {
+        //for development purpose and without database API not generated 
+        // The localStorage serves as database to keep track of the cartList
         localStorage.setItem("cartList", JSON.stringify(cartList));
       }, [cartList]);
 
       useEffect(() => {
+        //for development purpose and without database API not generated 
+        // The localStorage serves as database to keep track of the cartList
         const cartItems = localStorage.getItem("cartItems");
         if (cartItems) {
           setCartList(JSON.parse(cartItems));
@@ -63,9 +74,9 @@ export const CartProvider = ({ children }) => {
         <CartContext.Provider
           value={{
             cartList,
-            addToCart,
-            removeFromCart,
-            clearCart,
+            addToCartList,
+            removeFromCartList,
+            clearCartList,
             getCartTotal,
           }}
         >
