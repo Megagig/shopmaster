@@ -1,17 +1,18 @@
-import { useState, useEffect } from "react";
 import axios from "axios";
+import { useEffect, useState } from "react";
 
 export function FilterBar (){
   const [categories, updateCategories] = useState([]);
 
   useEffect(() => {
-    axios.get("http://localhost:3000/categories")
+    axios.get("products.json")
       .then(response => {
-        // console.log(response.data);
-        updateCategories(response.data);
+        console.log(response.data);
+        updateCategories(response.data.categories);
       })
       .catch(error => console.log(error));
   }, []);
+  console.log({categories})
 
   return <div className={"hidden w-[40vw] md:block"}>
     <header className="flex justify-between my-3 mt-7 px-4">
