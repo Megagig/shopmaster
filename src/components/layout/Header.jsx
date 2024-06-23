@@ -1,4 +1,8 @@
 import { Link } from 'react-router-dom';
+import { GoGear } from 'react-icons/go';
+import { CiSearch } from 'react-icons/ci';
+import { FaCartArrowDown } from 'react-icons/fa';
+import { BsPersonCircle } from 'react-icons/bs';
 import Logo from '../../assets/logo.png';
 
 export const Header = () => {
@@ -13,16 +17,24 @@ export const Header = () => {
             </span>
           </Link>
           <div className="flex items-center relative">
-            <span className="cursor-pointer text-xl text-gray-700 dark:text-white mr-5 bi bi-gear-wide-connected"></span>
-            <span className="cursor-pointer text-xl text-gray-700 dark:text-white mr-5 bi bi-search"></span>
+            <span className="cursor-pointer text-xl text-gray-700 dark:text-white mr-5">
+              <GoGear />
+            </span>
+            <span className="cursor-pointer text-xl text-gray-700 dark:text-white mr-5 bi bi-search">
+              <CiSearch />
+            </span>
             <Link to="/cart" className="text-gray-700 dark:text-white mr-5">
               <span className="text-2xl bi bi-cart-fill relative">
+                {' '}
+                <FaCartArrowDown />
                 <span className="text-white text-sm absolute -top-1 left-2.5 bg-rose-500 px-1 rounded-full ">
                   0
                 </span>
               </span>
             </Link>
-            <span className="bi bi-person-circle cursor-pointer text-2xl text-gray-700 dark:text-white"></span>
+            <span className="bi bi-person-circle cursor-pointer text-2xl text-gray-700 dark:text-white">
+              <BsPersonCircle />
+            </span>
           </div>
         </div>
       </nav>
