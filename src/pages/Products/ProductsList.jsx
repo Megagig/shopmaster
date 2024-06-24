@@ -8,7 +8,7 @@ export const ProductsList = () => {
   const [products, updateProducts] = useState([]);
 
   useEffect((input) => {
-    //changed the url by moving the json to the public folder
+    //changed the url by moving the json to the public
     axios.get("products.json")
       .then(response => {
         console.log(response.data);

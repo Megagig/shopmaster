@@ -1,11 +1,20 @@
-import { Link } from 'react-router-dom';
-import { GoGear } from 'react-icons/go';
+import { useContext, useEffect, useState } from 'react';
+import { BsPersonCircle } from 'react-icons/bs';
 import { CiSearch } from 'react-icons/ci';
 import { FaCartArrowDown } from 'react-icons/fa';
-import { BsPersonCircle } from 'react-icons/bs';
+import { GoGear } from 'react-icons/go';
+import { Link } from 'react-router-dom';
 import Logo from '../../assets/logo.png';
+import { CartContext } from '../../pages/Cart/Context/CartContext';
 
 export const Header = () => {
+  const {cartList} = useContext(CartContext)
+
+  const [cartItemNumber, setCartItemNumber] = useState(cartList.length);
+  useEffect(()=>{
+    setCartItemNumber(cartList.length)
+  },[cartList])
+
   return (
     <header>
       <nav className="bg-white dark:bg-gray-900">
@@ -28,7 +37,7 @@ export const Header = () => {
                 {' '}
                 <FaCartArrowDown />
                 <span className="text-white text-sm absolute -top-1 left-2.5 bg-rose-500 px-1 rounded-full ">
-                  0
+                  {cartItemNumber}
                 </span>
               </span>
             </Link>

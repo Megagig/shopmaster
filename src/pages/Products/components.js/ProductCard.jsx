@@ -5,14 +5,13 @@ import { CartContext } from '../../Cart/Context/CartContext.jsx';
 
 export function ProductCard (props){
     const navigate = useNavigate();
-    const {addToCart} = useContext(CartContext)
+    const {addToCartList} = useContext(CartContext)
     const itemSelectedHandler = () => {
         navigate(`/products/${props.id}`);
     }
     const handleAddToCart = () =>{
-        console.log("induced handles")
-        console.log(addToCart)
-        addToCart({
+        //add to the cart dunction is called
+        addToCartList({
             id :props.id,
             name: props.name,
             price:props.price,
