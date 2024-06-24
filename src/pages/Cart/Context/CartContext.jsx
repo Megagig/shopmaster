@@ -1,6 +1,7 @@
 /* eslint-disable react/prop-types */
-  import{
-    createContext, useEffect, useState } from 'react';
+  import {
+    createContext, useEffect, useState
+} from 'react';
 
 export const CartContext = createContext();
 
@@ -46,7 +47,9 @@ export const CartProvider = ({ children }) => {
           );
         }
       };
-
+      const removeItemFromCartList = (item) =>{
+        setCartList(cartList.filter((value)=>{return item.id != value.id}))
+      };
       const clearCartList = () => {
         // set the cartList to an empty array
         setCartList([]); 
@@ -77,6 +80,7 @@ export const CartProvider = ({ children }) => {
             cartList,
             addToCartList,
             removeFromCartList,
+            removeItemFromCartList,
             clearCartList,
             getCartTotal,
           }}
