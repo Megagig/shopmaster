@@ -14,3 +14,5 @@ export const AllRoutes = () => {
     </>
   );
 };
+
+  export default AllRoutes;
