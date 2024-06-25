@@ -8,12 +8,12 @@ import Logo from '../../assets/logo.png';
 import { CartContext } from '../../pages/Cart/Context/CartContext';
 
 export const Header = () => {
-  const {cartList} = useContext(CartContext)
+  const { cartList } = useContext(CartContext)
 
   const [cartItemNumber, setCartItemNumber] = useState(cartList.length);
-  useEffect(()=>{
+  useEffect(() => {
     setCartItemNumber(cartList.length)
-  },[cartList])
+  }, [cartList])
 
   return (
     <header>
@@ -32,7 +32,7 @@ export const Header = () => {
             <span className="cursor-pointer text-xl text-gray-700 dark:text-white mr-5 bi bi-search">
               <CiSearch />
             </span>
-            <Link to="/cart" className="text-gray-700 dark:text-white mr-5">
+            <Link to="/cartCheckout" className="text-gray-700 dark:text-white mr-5">
               <span className="text-2xl bi bi-cart-fill relative">
                 {' '}
                 <FaCartArrowDown />
@@ -41,9 +41,14 @@ export const Header = () => {
                 </span>
               </span>
             </Link>
+
+
             <span className="bi bi-person-circle cursor-pointer text-2xl text-gray-700 dark:text-white">
               <BsPersonCircle />
             </span>
+
+
+
           </div>
         </div>
       </nav>
