@@ -6,7 +6,7 @@ export const CartModal = () => {
     const { cartList } = useContext(CartContext);
     const [displayCartList , setDisplayCartList] = useState(cartList)
     return (
-        <div className="w-13rem h-fit p-6 flex flex-col bg-white ">
+        <div className="w-[32rem] h-fit p-6 flex flex-col bg-white gap-2.5">
                 <h3>You have 3 items in the cart</h3>
                 {displayCartList.map((item) => (
                     <CartCard key={item}/>
