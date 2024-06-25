@@ -1,6 +1,7 @@
 import { Route, Routes } from 'react-router-dom';
 import { HomePage, ProductDetail, ProductsList } from '../pages';
-import { CartPage } from '../pages/Cart/CartPage';
+import Cart from '../pages/Cart/Cart';
+
 
 export const AllRoutes = () => {
   return (
@@ -9,10 +10,12 @@ export const AllRoutes = () => {
         <Route path="/" element={<HomePage />} />
         <Route path="/products" element={<ProductsList />} />
         <Route path="/products/:id" element={<ProductDetail />} />
-        <Route path="/cart" element={<CartPage />} />
+        <Route path="/cart" element={<Cart />} />
+
+
       </Routes>
     </>
   );
 };
 
-  export default AllRoutes;
+export default AllRoutes;
