@@ -47,6 +47,7 @@ export const CartProvider = ({ children }) => {
           );
         }
       };
+      // remoove the item object irrespective of the quantity of the item  
       const removeItemFromCartList = (item) =>{
         setCartList(cartList.filter((value)=>{return item.id != value.id}))
       };
