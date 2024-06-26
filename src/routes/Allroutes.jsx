@@ -17,7 +17,6 @@ export const AllRoutes = () => {
         
         
         
-        
         <Route path="/cartCheckout" element={<CartCheckout />} />
       </Routes>
     </>
