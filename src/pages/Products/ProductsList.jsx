@@ -4,10 +4,11 @@ import { useState, useEffect } from "react";
 import { ProductCard } from "./components.js/ProductCard";
 
 export const ProductsList = () => {
+  const baseUrl = "http://localhost:3000"
   const [products, updateProducts] = useState([]);
 
   useEffect((input) => {
-    axios.get("http://localhost:3000/products")
+    axios.get(`${baseUrl}/products`)
       .then(response => {
         // console.log(response.data);
         updateProducts(response.data);
