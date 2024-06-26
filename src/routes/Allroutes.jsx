@@ -14,6 +14,10 @@ export const AllRoutes = () => {
         <Route path="/checkout" element={<Checkout />} />
 
 
+        
+        
+        
+        
         <Route path="/cartCheckout" element={<CartCheckout />} />
       </Routes>
     </>
