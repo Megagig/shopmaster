@@ -5,14 +5,14 @@ import { FilterBar } from "./components.js/FilterBar";
 import { ProductCard } from "./components.js/ProductCard";
 
 export const ProductsList = () => {
+  const baseUrl = "http://localhost:3000"
   const [products, updateProducts] = useState([]);
 
   useEffect((input) => {
-    //changed the url by moving the json to the public
-    axios.get("products.json")
+    axios.get(`${baseUrl}/products`)
       .then(response => {
         console.log(response.data);
-        updateProducts(response.data.products);
+        updateProducts(response.data);
       })
       .catch(error => console.log(error));
   }, []);
