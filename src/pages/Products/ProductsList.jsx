@@ -1,6 +1,7 @@
-import { FilterBar } from "./components.js/FilterBar";
+/* eslint-disable no-unused-vars */
 import axios from "axios";
-import { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
+import { FilterBar } from "./components.js/FilterBar";
 import { ProductCard } from "./components.js/ProductCard";
 
 export const ProductsList = () => {
@@ -10,7 +11,7 @@ export const ProductsList = () => {
   useEffect((input) => {
     axios.get(`${baseUrl}/products`)
       .then(response => {
-        // console.log(response.data);
+        console.log(response.data);
         updateProducts(response.data);
       })
       .catch(error => console.log(error));
