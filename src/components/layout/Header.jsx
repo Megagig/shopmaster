@@ -20,6 +20,7 @@ export const Header = () => {
     { path: '/', label: 'Home' },
     { path: '/products', label: 'Products' },
     { path: '/about', label: 'About' },
+    { path: '/contact', label: 'Contact' },
     // Add more menu items as needed
   ];
 
