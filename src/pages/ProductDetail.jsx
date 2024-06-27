@@ -1,42 +1,66 @@
 import axios from "axios";
-import React from "react";
-import { useEffect } from "react";
-import { useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
+import { useParams } from "react-router-dom";
+import { CartContext } from "./Cart/Context/CartContext";
 
 const ProductDetail = () => {
+    const { id } = useParams();
+    const { addToCartList } = useContext(CartContext);
     const [activeTab, setActiveTab] = useState("description");
     const [product, setProduct] = useState({
-      id: 0,
-      name: '',
-      price: 0,
-      category: '',
-      description: '',
-      image: '',
+        id: 0,
+        name: "",
+        price: 0,
+        category: "",
+        description: "",
+        image: "",
     });
-    const baseUrl = 'https://fakestoreapi.com';
+    const baseUrl = "https://fakestoreapi.com";
 
     useEffect(() => {
-      // const response = await axios.get()
-    })
+        const getProduct = async () => {
+            const response = await axios.get(`${baseUrl}/products/${id}`);
+            // console.log(response.data);
+            setProduct(response.data);
+        };
+
+        getProduct();
+    }, []);
+
+    const handleAddToCart = () => {
+        //add to the cart dunction is called
+        addToCartList({
+            id: product.id,
+            name: product.name,
+            price: product.price,
+            description: product.description,
+            image: product.image,
+        });
+    };
 
     return (
-        <div className="container mx-auto p-6">
+        <div className="container max-w-[1280px] m-auto p-6">
             <div className="flex flex-col md:flex-row">
-                <div className="w-full md:w-1/2 p-4">
+                <div className=" p-4">
                     <img
                         src={product.image}
-                        alt={product.name}
-                        className="w-full h-auto object-cover"
+                        alt={product.title}
+                        className="w-60 h-60 object-contain"
                     />
                 </div>
-                <div className="w-full md:w-1/2 p-4">
-                    <h1 className="text-2xl font-bold mb-4">{product.name}</h1>
-                    <p className="text-xl text-gray-700 mb-4">
+                <div className="flex-1 p-4">
+                    <h1 className="text-2xl font-bold mb-4">{product.title}</h1>
+                    <p className="text-xl text-gray-700 mb-4 font-bold">
                         ${product.price}
                     </p>
-                    <p className="text-gray-600 mb-4">{product.category}</p>
+                    <p className="text-gray-700 mb-4 w-2/3">
+                        {`${product.description
+                            .slice(0, 1)
+                            .toUpperCase()}${product.description.slice(1)}`}
+                    </p>
+                    <p className="text-gray-600 mb-4 capitalize">{product.category}</p>
                     <div className="mb-4">
-                        <button className="px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-700">
+                        <button onClick={handleAddToCart} className="bg-neutral-900 hover:bg-neutral-800 px-4 py-2 text-white font-bold rounded-lg">
                             Add to Cart
                         </button>
                     </div>
@@ -48,9 +72,9 @@ const ProductDetail = () => {
                         <button
                             className={`mr-1 ${
                                 activeTab === "description"
-                                    ? "border-blue-500 text-blue-600"
+                                    ? "border-neutral-800 text-neutral-800"
                                     : "border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300"
-                            } whitespace-nowrap py-4 px-1 border-b-2 font-medium text-sm`}
+                            } whitespace-nowrap py-4 px-1 border-b-2 font-bold text-sm`}
                             onClick={() => setActiveTab("description")}
                         >
                             Description
@@ -58,9 +82,9 @@ const ProductDetail = () => {
                         <button
                             className={`mr-1 ${
                                 activeTab === "information"
-                                    ? "border-blue-500 text-blue-600"
+                                    ? "border-neutral-800 text-neutral-800"
                                     : "border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300"
-                            } whitespace-nowrap py-4 px-1 border-b-2 font-medium text-sm`}
+                            } whitespace-nowrap py-4 px-1 border-b-2 font-bold text-sm`}
                             onClick={() => setActiveTab("information")}
                         >
                             Other Information
@@ -70,23 +94,26 @@ const ProductDetail = () => {
                 <div className="mt-4">
                     {activeTab === "description" && (
                         <div>
-                            <h2 className="text-lg font-semibold mb-2">
+                            {/* <h2 className="text-lg font-semibold mb-2">
                                 Product Description
-                            </h2>
-                            <p>{product.description}</p>
+                            </h2> */}
+                            <p>{`${product.description
+                                .slice(0, 1)
+                                .toUpperCase()}${product.description.slice(
+                                1
+                            )}`}</p>
                         </div>
                     )}
                     {activeTab === "information" && (
                         <div>
-                            <h2 className="text-lg font-semibold mb-2">
+                            {/* <h2 className="text-lg font-semibold mb-2">
                                 Other Information
-                            </h2>
+                            </h2> */}
                             <ul>
-                                <li>Brand: {product.brand}</li>
-                                <li>SKU: {product.sku}</li>
-                                <li>Weight: {product.weight}</li>
-                                <li>Dimensions: {product.dimensions}</li>
-                                {/* Add more product information as needed */}
+                                <li>Price: <span className="font-bold">{`$${product.price}`}</span></li>
+                                <li className="capitalize">
+                                    Category: <span className="font-bold">{product.category}</span>
+                                </li>
                             </ul>
                         </div>
                     )}
