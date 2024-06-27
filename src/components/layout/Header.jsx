@@ -2,6 +2,7 @@ import { useContext, useEffect, useState } from 'react';
 import { BsPersonCircle } from 'react-icons/bs';
 import { CiSearch } from 'react-icons/ci';
 import { FaCartArrowDown } from 'react-icons/fa';
+
 import { Link } from 'react-router-dom';
 import Logo from '../../assets/logo.png';
 import { CartContext } from '../../pages/Cart/Context/CartContext';
