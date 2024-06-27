@@ -15,6 +15,13 @@ export const Header = () => {
     setCartItemNumber(cartList.length);
   }, [cartList]);
 
+  const menuItems = [
+    { path: '/', label: 'Home' },
+    { path: '/products', label: 'Products' },
+    { path: '/about', label: 'About' },
+    // Add more menu items as needed
+  ];
+
   return (
     <header>
       <nav className="bg-white dark:bg-gray-900">
