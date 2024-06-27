@@ -38,26 +38,39 @@ export const Header = () => {
           >
             <span className="text-2xl">☰</span>
           </button>
-          <div className="flex items-center relative">
-            <span className="cursor-pointer text-xl text-gray-700 dark:text-white mr-5 bi bi-search">
-              <CiSearch />
-            </span>
-            <Link
-              to="/cartCheckout"
-              className="text-gray-700 dark:text-white mr-5"
-            >
-              <span className="text-2xl bi bi-cart-fill relative">
-                {' '}
-                <FaCartArrowDown />
-                <span className="text-white text-sm absolute -top-1 left-2.5 bg-rose-500 px-1 rounded-full ">
-                  {cartItemNumber}
-                </span>
+          <div
+            className={`w-full md:flex md:items-center md:w-auto ${
+              isMenuOpen ? '' : 'hidden'
+            }`}
+          >
+            {menuItems.map((item, index) => (
+              <Link
+                key={index}
+                to={item.path}
+                className="block mt-4 md:inline-block md:mt-0 text-gray-700 dark:text-white mr-4"
+              >
+                {item.label}
+              </Link>
+            ))}
+            <div className="flex items-center relative">
+              <span className="cursor-pointer text-xl text-gray-700 dark:text-white mr-5">
+                <CiSearch />
               </span>
-            </Link>
-
-            <span className="bi bi-person-circle cursor-pointer text-2xl text-gray-700 dark:text-white">
-              <BsPersonCircle />
-            </span>
+              <Link
+                to="/cartCheckout"
+                className="text-gray-700 dark:text-white mr-5"
+              >
+                <span className="text-2xl relative">
+                  <FaCartArrowDown />
+                  <span className="text-white text-sm absolute -top-1 left-2.5 bg-rose-500 px-1 rounded-full">
+                    {cartItemNumber}
+                  </span>
+                </span>
+              </Link>
+              <span className="cursor-pointer text-2xl text-gray-700 dark:text-white">
+                <BsPersonCircle />
+              </span>
+            </div>
           </div>
         </div>
       </nav>
