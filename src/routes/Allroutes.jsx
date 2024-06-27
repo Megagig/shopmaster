@@ -1,8 +1,9 @@
 import { Route, Routes } from 'react-router-dom';
-import { HomePage, ProductDetail, ProductsList } from '../pages';
+import { HomePage, ProductsList } from '../pages';
 import Checkout from '../pages/Checkout/Checkout';
 import CartCheckout from '../pages/Cart/components/CartCheckout';
 import OrderPage from '../pages/Order/OrderPage';
+import ProductDetail from '../pages/ProductDetail';
 
 
 export const AllRoutes = () => {
