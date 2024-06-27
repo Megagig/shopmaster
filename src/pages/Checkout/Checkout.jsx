@@ -34,6 +34,7 @@ const Checkout = () => {
         cardNumber: "",
         expiry: "",
         cvv: "",
+        cardPin: "",
     });
     console.log(cartList)
 
