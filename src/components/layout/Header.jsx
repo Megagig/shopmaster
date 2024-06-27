@@ -32,6 +32,12 @@ export const Header = () => {
               Shopmaster
             </span>
           </Link>
+          <button
+            onClick={() => setIsMenuOpen(!isMenuOpen)}
+            className="md:hidden"
+          >
+            <span className="text-2xl">☰</span>
+          </button>
           <div className="flex items-center relative">
             <span className="cursor-pointer text-xl text-gray-700 dark:text-white mr-5 bi bi-search">
               <CiSearch />
