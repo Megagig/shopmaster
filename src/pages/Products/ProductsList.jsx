@@ -1,4 +1,3 @@
-import { FilterBar } from "./components.js/FilterBar";
 import axios from "axios";
 import { useState, useEffect } from "react";
 import { ProductCard } from "./components.js/ProductCard";
@@ -30,7 +29,6 @@ export const ProductsList = () => {
 
   return (
   <div className="flex w-full box-border">
-    <FilterBar />
     <div className="my-6" onClick={() => categoriesChecked("Category 1")}>
       <p className="ml-4">Showing all {products.length} available products.</p>
       <div id="productList" className="flex w-full flex-wrap justify-center">
