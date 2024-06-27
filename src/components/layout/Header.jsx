@@ -2,18 +2,17 @@ import { useContext, useEffect, useState } from 'react';
 import { BsPersonCircle } from 'react-icons/bs';
 import { CiSearch } from 'react-icons/ci';
 import { FaCartArrowDown } from 'react-icons/fa';
-import { GoGear } from 'react-icons/go';
 import { Link } from 'react-router-dom';
 import Logo from '../../assets/logo.png';
 import { CartContext } from '../../pages/Cart/Context/CartContext';
 
 export const Header = () => {
-  const { cartList } = useContext(CartContext)
+  const { cartList } = useContext(CartContext);
 
   const [cartItemNumber, setCartItemNumber] = useState(cartList.length);
   useEffect(() => {
-    setCartItemNumber(cartList.length)
-  }, [cartList])
+    setCartItemNumber(cartList.length);
+  }, [cartList]);
 
   return (
     <header>
@@ -26,13 +25,13 @@ export const Header = () => {
             </span>
           </Link>
           <div className="flex items-center relative">
-            <span className="cursor-pointer text-xl text-gray-700 dark:text-white mr-5">
-              <GoGear />
-            </span>
             <span className="cursor-pointer text-xl text-gray-700 dark:text-white mr-5 bi bi-search">
               <CiSearch />
             </span>
-            <Link to="/cartCheckout" className="text-gray-700 dark:text-white mr-5">
+            <Link
+              to="/cartCheckout"
+              className="text-gray-700 dark:text-white mr-5"
+            >
               <span className="text-2xl bi bi-cart-fill relative">
                 {' '}
                 <FaCartArrowDown />
@@ -42,13 +41,9 @@ export const Header = () => {
               </span>
             </Link>
 
-
             <span className="bi bi-person-circle cursor-pointer text-2xl text-gray-700 dark:text-white">
               <BsPersonCircle />
             </span>
-
-
-
           </div>
         </div>
       </nav>
