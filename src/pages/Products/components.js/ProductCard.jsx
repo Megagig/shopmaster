@@ -35,14 +35,14 @@ export function ProductCard(props) {
             </div>
             <div className="flex flex-col flex-1 px-4">
                 <div className="flex-1">
-                    <p className="text-gray-600 mb-2">{props.category}</p>
+                    <p className="text-gray-600 mb-2 capitalize">{props.category}</p>
                     <p className="text-gray-800 font-bold mb-4">
                         ${props.price}
                     </p>
                 </div>
                 <button
                     onClick={handleAddToCart}
-                    className="w-full mt-auto px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-700"
+                    className="w-full mt-auto bg-neutral-900 hover:bg-neutral-800 px-4 py-2 text-white font-bold rounded-lg"
                 >
                     Add to Cart
                 </button>

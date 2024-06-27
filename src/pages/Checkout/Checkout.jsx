@@ -272,7 +272,7 @@ const Checkout = () => {
 
                     {step === 3 && (
                         <button
-                            className="bg-neutral-900 px-4 py-3 text-white font-bold rounded-lg mt-4"
+                            className="bg-neutral-900 hover:bg-neutral-800 px-4 py-3 text-white font-bold rounded-lg mt-4"
                             onClick={submit}
                         >
                             {isSubmittingOrder
