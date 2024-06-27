@@ -2,20 +2,25 @@ import React, { useState } from "react";
 import { hasNoEmptyValue } from "../utils";
 
 const PaymentMethod = ({ formData, handleChange, step, setStep, setIsSubmited }) => {
+    const [isSubmitting, setIsSubmitting] = useState(false);
     const [errorMessage, setErrorMessage] = useState("");
 
     const submit = (e) => {
         e.preventDefault();
 
         setErrorMessage("");
+        setIsSubmitting(true);
 
         if (!hasNoEmptyValue(formData)) {
             setErrorMessage("All fields are required.");
             return;
         }
 
-        setIsSubmited(true);
-        setStep(step + 1);
+        setTimeout(() => {
+            setIsSubmited(true);
+            setIsSubmitting(false)
+            setStep(step + 1);
+        }, 3000);
     };
 
     const goBack = (e) => {
@@ -100,7 +105,7 @@ const PaymentMethod = ({ formData, handleChange, step, setStep, setIsSubmited })
                                 CVV <small className="text-red-800">*</small>
                             </label>
                             <input
-                                type="text"
+                                type="password"
                                 name="cvv"
                                 id="cvv"
                                 value={formData.cvv}
@@ -125,7 +130,7 @@ const PaymentMethod = ({ formData, handleChange, step, setStep, setIsSubmited })
                         className="bg-neutral-900 px-4 py-2 text-white rounded-lg mt-4"
                         onClick={submit}
                     >
-                        Continue
+                        {isSubmitting ? 'Processing...' : 'Continue'}
                     </button>
                 </div>
             </form>

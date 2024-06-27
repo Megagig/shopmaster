@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import Address from "./components/Address";
 import OrderReview from "./components/OrderReview";
 import PaymentMethod from "./components/PaymentMethod";
@@ -7,12 +7,17 @@ import CheckoutSuccess from "./components/CheckoutSuccess";
 import CheckoutFailure from "./components/CheckoutFailure";
 import { RiHome7Line } from "react-icons/ri";
 import { FaRegCreditCard, FaRegRectangleList } from "react-icons/fa6";
+import { CartContext } from "../Cart/Context/CartContext";
 
 const Checkout = () => {
     const [step, setStep] = useState(1);
+    const {cartList, getCartTotal} = useContext(CartContext);
     const [isAddressSubmited, setIsAddressSubmited] = useState(false);
     const [isPaymentSubmited, setIsPaymentSubmited] = useState(false);
     const [isSubmittingOrder, setIsSubmittingOrder] = useState(false);
+    const [deliveryCharge, setDeliveryCharge] = useState(5);
+    const [discount, setDiscount] = useState(0);
+    const [coupon, setCoupon] = useState('');
     const [isModalOpen, setIsModalOpen] = useState(false);
 
     const openModal = () => setIsModalOpen(true);
@@ -30,6 +35,15 @@ const Checkout = () => {
         expiry: "",
         cvv: "",
     });
+    console.log(cartList)
+
+    const applyDiscount = () => {
+        if (coupon === 'ACME_FIVE') {
+            setDiscount(5);
+        } else {
+            setDiscount(0);
+        }
+    }
 
     function handlePaymentFormChange(e) {
         const { name, value, type, checked } = e.target;
@@ -191,6 +205,7 @@ const Checkout = () => {
                                     paymentInfo={paymentFormData}
                                     step={step}
                                     setStep={setStep}
+                                    cartList={cartList}
                                 />
                             )}
                         </div>
@@ -220,7 +235,7 @@ const Checkout = () => {
                 <div className="order-summary text-sm flex flex-col w-38 gap-3 p-4 border border-gray-200">
                     <div className="flex justify-between pb-2 border-b">
                         <h1 className="font-bold">Subtotal</h1>
-                        <h1 className="font-bold">₦50000.00</h1>
+                        <h1 className="font-bold">{`$${getCartTotal()}`}</h1>
                     </div>
 
                     <div className="flex flex-col gap-1">
@@ -231,8 +246,10 @@ const Checkout = () => {
                                 name="discount-code"
                                 id="discount-code"
                                 className="border p-2 rounded-s-lg"
+                                value={coupon}
+                                onChange={(e) => setCoupon(e.target.value)}
                             />
-                            <button className="bg-neutral-900 text-neutral-200 text-sm px-6 rounded-e-lg -ml-1">
+                            <button onClick={applyDiscount} className="bg-neutral-900 text-neutral-200 text-sm px-6 rounded-e-lg -ml-1">
                                 Apply
                             </button>
                         </div>
@@ -240,17 +257,17 @@ const Checkout = () => {
 
                     <div className="flex justify-between">
                         <h1 className="">Delivery Charge</h1>
-                        <h1 className="">₦500.00</h1>
+                        <h1 className="">{`$${deliveryCharge}.00`}</h1>
                     </div>
 
                     <div className="flex justify-between">
                         <h1 className="">Discount</h1>
-                        <h1 className="">₦500.00</h1>
+                        <h1 className="">{`$${discount ? discount : 0}.00`}</h1>
                     </div>
 
                     <div className="flex justify-between pt-2 border-t">
                         <h1 className="font-bold">Grand Total</h1>
-                        <h1 className="font-bold">₦50000.00</h1>
+                        <h1 className="font-bold">{`$${getCartTotal() + deliveryCharge - discount}`}</h1>
                     </div>
 
                     {step === 3 && (
@@ -270,7 +287,7 @@ const Checkout = () => {
                         onClose={closeModal}
                         title="Checkout Modal"
                     >
-                        <CheckoutSuccess />
+                        <CheckoutSuccess addressData={addressFormData} paymentData={paymentFormData} deliveryCharge={deliveryCharge} discount={discount} />
                         {/* <CheckoutFailure onClose={closeModal} /> */}
                     </CheckoutModal>
                 </div>

@@ -2,7 +2,8 @@ import React from "react";
 import { IoCheckmarkDoneCircle } from "react-icons/io5";
 import { Link } from "react-router-dom";
 
-const CheckoutSuccess = () => {
+const CheckoutSuccess = ({ addressData, paymentData, deliveryCharge, discount }) => {
+    console.log(deliveryCharge, discount)
     return (
         <div className="flex flex-col gap-4">
             <div className="flex justify-center items-center self-center p-1 bg-neutral-100 rounded-full shadow-md h-20 w-20">
@@ -26,6 +27,7 @@ const CheckoutSuccess = () => {
             <div className="flex flex-col gap-2 mt-1">
                 <Link
                     to="/order"
+                    state={{addressData, paymentData, deliveryCharge, discount}}
                     className="px-4 py-2 text-center bg-neutral-900 text-white font-medium rounded-lg hover:bg-neutral-700"
                 >
                     View Order

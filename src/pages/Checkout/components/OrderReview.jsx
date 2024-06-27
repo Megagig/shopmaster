@@ -3,17 +3,17 @@ import ReviewCard from "./ReviewCard";
 import { BiSolidEdit } from "react-icons/bi";
 import { orderReviewData } from "../data";
 
-const OrderReview = ({ addressInfo, paymentInfo, setStep, step }) => {
-    const address = () => {
+const OrderReview = ({ addressInfo, paymentInfo, setStep, step, cartList }) => {
+    const computeAddress = () => {
         return `${addressInfo.address}, ${addressInfo.city}, ${addressInfo.state} State.`;
     };
 
-    // console.log(addressInfo);
+    console.log(cartList);
     // console.log(paymentInfo);
 
     return (
         <div>
-            {orderReviewData.map((order) => (
+            {cartList.map((order) => (
                 <ReviewCard key={order.id} info={order} />
             ))}
 
@@ -23,7 +23,7 @@ const OrderReview = ({ addressInfo, paymentInfo, setStep, step }) => {
                 <div className="flex justify-between items-start">
                     <div className="flex flex-col gap-1">
                         <h4 className="font-bold text-sm">{addressInfo.fullName}</h4>
-                        <p className="text-sm">{address()}</p>
+                        <p className="text-sm">{ computeAddress()}</p>
                     </div>
 
                     <button className="bg-neutral-200 p-1 rounded-md" onClick={() => setStep(1)}>

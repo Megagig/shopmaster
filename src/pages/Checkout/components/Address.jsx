@@ -25,7 +25,7 @@ const Address = ({ formData, handleChange, step, setStep, setIsSubmited }) => {
                     {errorMessage}
                 </p>
             )}
-            <form className="">
+            <form className="mt-4">
                 <div className="flex flex-col gap-4">
                     <div className="">
                         <label
