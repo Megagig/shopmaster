@@ -3,6 +3,8 @@ import { HomePage, ProductsList } from '../pages';
 import Checkout from '../pages/Checkout/Checkout';
 import CartCheckout from '../pages/Cart/components/CartCheckout';
 import OrderPage from '../pages/Order/OrderPage';
+import About from '../components/layout/About';
+import Contact from '../components/layout/Contact';
 
 export const AllRoutes = () => {
   return (
@@ -10,6 +12,8 @@ export const AllRoutes = () => {
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/products" element={<ProductsList />} />
+        <Route path="/about" element={<About />} />
+        <Route path="/contact" element={<Contact />} />
         <Route path="/checkout" element={<Checkout />} />
         <Route path="/order" element={<OrderPage />} />
 
