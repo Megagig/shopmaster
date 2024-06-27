@@ -8,8 +8,9 @@ import { CartContext } from '../../pages/Cart/Context/CartContext';
 
 export const Header = () => {
   const { cartList } = useContext(CartContext);
-
   const [cartItemNumber, setCartItemNumber] = useState(cartList.length);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+
   useEffect(() => {
     setCartItemNumber(cartList.length);
   }, [cartList]);
