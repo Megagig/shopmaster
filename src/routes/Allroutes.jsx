@@ -6,7 +6,7 @@ import OrderPage from '../pages/Order/OrderPage';
 import ProductDetail from '../pages/ProductDetail';
 import About from '../components/layout/About';
 import Contact from '../components/layout/Contact';
-
+import {PageNotFound} from "../pages/PageNotFound"
 export const AllRoutes = () => {
   return (
     <>
@@ -20,6 +20,7 @@ export const AllRoutes = () => {
         <Route path="/order" element={<OrderPage />} />
 
         <Route path="/cartCheckout" element={<CartCheckout />} />
+        <Route path="*" element={<PageNotFound />} />
       </Routes>
     </>
   );
