@@ -23,9 +23,9 @@ export function FilterBar (props){
       <h1 className="font-extrabold inline">Categories</h1>
     </header>
 
-    {categories.map(category => {
+    {categories.map((category, index) => {
       return (
-        <div key={category.id} className="flex mx-4 my-3 gap-4">
+        <div key={index} className="flex mx-4 my-3 gap-4">
           <input type="checkbox" className="lg:w-8" name={category} id={category} onChange = {(e) => props.checkboxClickedHandler(e)} />
           <h2 className="font-normal text-sm">{category}</h2>
         </div>

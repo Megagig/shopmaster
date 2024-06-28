@@ -1,4 +1,5 @@
 import React, { useState, useContext } from "react";
+import { useLocation } from "react-router-dom";
 import Address from "./components/Address";
 import OrderReview from "./components/OrderReview";
 import PaymentMethod from "./components/PaymentMethod";
@@ -10,20 +11,22 @@ import { FaRegCreditCard, FaRegRectangleList } from "react-icons/fa6";
 import { CartContext } from "../Cart/Context/CartContext";
 
 const Checkout = () => {
+    const {state} = useLocation();
     const [step, setStep] = useState(1);
     const {cartList, getCartTotal} = useContext(CartContext);
     const [isAddressSubmited, setIsAddressSubmited] = useState(false);
     const [isPaymentSubmited, setIsPaymentSubmited] = useState(false);
     const [isSubmittingOrder, setIsSubmittingOrder] = useState(false);
     const [deliveryCharge, setDeliveryCharge] = useState(5);
-    const [discount, setDiscount] = useState(0);
-    const [coupon, setCoupon] = useState('');
+    const [discount, setDiscount] = useState(state.discount ?? 0);
+    const [coupon, setCoupon] = useState(state.coupon ?? '');
     const [isModalOpen, setIsModalOpen] = useState(false);
 
     const openModal = () => setIsModalOpen(true);
     const closeModal = () => setIsModalOpen(false);
     const [addressFormData, setAddressFormData] = useState({
         fullName: "",
+        email: "",
         phoneNumber: "",
         address: "",
         city: "",
@@ -36,10 +39,9 @@ const Checkout = () => {
         cvv: "",
         cardPin: "",
     });
-    console.log(cartList)
 
     const applyDiscount = () => {
-        if (coupon === 'ACME_FIVE') {
+        if (coupon.toLowerCase() === 'acme_five') {
             setDiscount(5);
         } else {
             setDiscount(0);
@@ -94,18 +96,11 @@ const Checkout = () => {
     };
 
     return (
-        <div className="container px-6 py-5 max-w-[1280px] m-auto">
+        <div className="container p-10 max-w-[1280px] m-auto">
+            <h1 className="text-3xl font-bold mb-8">Checkout</h1>
             <div className="flex flex-col md:flex-row justify-between md:items-start gap-10">
                 <div className="multistep-form-container flex-1">
                     <div className="multistep-form">
-                        <h2 className="text-2xl font-medium mb-4">
-                            {step === 1
-                                ? "Shipping Address"
-                                : step === 2
-                                ? "Payment Method"
-                                : "Order Review"}
-                        </h2>
-
                         <div className="step-indicator">
                             <div className="flex items-center">
                                 <div className="flex flex-col items-center gap-1">
@@ -183,7 +178,16 @@ const Checkout = () => {
                             </div>
                         </div>
 
-                        <div className="body py-5">
+                        <h2 className="text-2xl font-medium pt-5 pb-2">
+                            {step === 1
+                                ? "Shipping Address"
+                                : step === 2
+                                ? "Payment Method"
+                                : "Order Review"}
+                        </h2>
+
+
+                        <div className="body">
                             {step === 1 ? (
                                 <Address
                                     formData={addressFormData}
@@ -233,7 +237,7 @@ const Checkout = () => {
                     </div>
                 </div>
 
-                <div className="order-summary text-sm flex flex-col w-38 gap-3 p-4 border border-gray-200">
+                <div className="order-summary flex flex-col w-38 gap-4 p-4 border border-gray-200">
                     <div className="flex justify-between pb-2 border-b">
                         <h1 className="font-bold">Subtotal</h1>
                         <h1 className="font-bold">{`$${getCartTotal()}`}</h1>
@@ -250,7 +254,7 @@ const Checkout = () => {
                                 value={coupon}
                                 onChange={(e) => setCoupon(e.target.value)}
                             />
-                            <button onClick={applyDiscount} className="bg-neutral-900 text-neutral-200 text-sm px-6 rounded-e-lg -ml-1">
+                            <button onClick={applyDiscount} className="bg-neutral-900 text-neutral-200  px-6 rounded-e-lg -ml-1">
                                 Apply
                             </button>
                         </div>
@@ -268,7 +272,7 @@ const Checkout = () => {
 
                     <div className="flex justify-between pt-2 border-t">
                         <h1 className="font-bold">Grand Total</h1>
-                        <h1 className="font-bold">{`$${getCartTotal() + deliveryCharge - discount}`}</h1>
+                        <h1 className="font-bold">{`$${(getCartTotal() + deliveryCharge - discount).toFixed(2)}`}</h1>
                     </div>
 
                     {step === 3 && (
