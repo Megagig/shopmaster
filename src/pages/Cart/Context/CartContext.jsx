@@ -2,6 +2,7 @@
   import {
     createContext, useEffect, useState
 } from 'react';
+import {numberFormat} from '../../../components/Elements/numberFormat.js'
 
 export const CartContext = createContext();
 
@@ -58,7 +59,7 @@ export const CartProvider = ({ children }) => {
 
       const getCartTotal = () => {
         // calculate the total price of the items in the cartList
-        return cartList.reduce((total, item) => total + item.price * item.quantity, 0); 
+        return numberFormat(cartList.reduce((total, item) => total + item.price * item.quantity, 0)); 
       };
 
       useEffect(() => {

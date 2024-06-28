@@ -2,6 +2,7 @@ import { useContext } from "react";
 import { CartContext } from "../Context/CartContext";
 import EmptyCart from "./EmptyCart";
 import { Link } from "react-router-dom";
+import {numberFormat} from '../../../components/Elements/numberFormat.js'
 
 const CartCheckout = () => {
     const {
@@ -74,7 +75,7 @@ const CartCheckout = () => {
                                         </li>
 
                                         <li className=" w-1/3 ">
-                                            ${item.price * item.quantity}
+                                            ${numberFormat(item.price * item.quantity)}
                                         </li>
                                         <li
                                             className=" w-1/4  cursor-pointer"
@@ -148,6 +149,12 @@ const CartCheckout = () => {
                                     className="text-white text-center bg-black p-3 rounded-lg"
                                 >
                                     Proceed to Checkout
+                                </Link>
+                                <Link
+                                    to="/products"
+                                    className="text-black mt-8 text-center bg-white p-3 border border-black rounded-lg"
+                                >
+                                    Continue Shopping
                                 </Link>
                             </div>
                         </div>
