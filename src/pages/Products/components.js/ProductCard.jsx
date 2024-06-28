@@ -20,6 +20,7 @@ export function ProductCard(props) {
             description: props.description,
             undiscounted_price: props.undiscounted_price,
             image: props.src,
+            category : props.category
         });
     };
 

@@ -1,42 +1,43 @@
-import axios from "axios";
-import React, { useEffect, useState, useContext } from "react";
-import { useParams } from "react-router-dom";
-import { CartContext } from "./Cart/Context/CartContext";
+import axios from 'axios';
+import React, { useEffect, useState, useContext } from 'react';
+import { useParams } from 'react-router-dom';
+import { CartContext } from './Cart/Context/CartContext';
 
 const ProductDetail = () => {
-    const { id } = useParams();
-    const { addToCartList } = useContext(CartContext);
-    const [activeTab, setActiveTab] = useState("description");
-    const [product, setProduct] = useState({
-        id: 0,
-        name: "",
-        price: 0,
-        category: "",
-        description: "",
-        image: "",
-    });
-    const baseUrl = "https://fakestoreapi.com";
+  const { id } = useParams();
+  const { addToCartList } = useContext(CartContext);
+  const [activeTab, setActiveTab] = useState('description');
+  const [product, setProduct] = useState({
+    id: 0,
+    name: '',
+    price: 0,
+    category: '',
+    description: '',
+    image: '',
+  });
+  const baseUrl = 'https://fakestoreapi.com';
 
-    useEffect(() => {
-        const getProduct = async () => {
-            const response = await axios.get(`${baseUrl}/products/${id}`);
-            // console.log(response.data);
-            setProduct(response.data);
-        };
-
-        getProduct();
-    }, []);
-
-    const handleAddToCart = () => {
-        //add to the cart dunction is called
-        addToCartList({
-            id: product.id,
-            name: product.name,
-            price: product.price,
-            description: product.description,
-            image: product.image,
-        });
+  useEffect(() => {
+    const getProduct = async () => {
+      const response = await axios.get(`${baseUrl}/products/${id}`);
+      console.log(response.data);
+      setProduct(response.data);
     };
+
+    getProduct();
+  }, []);
+
+  const handleAddToCart = () => {
+    //add to the cart dunction is called
+    addToCartList({
+      id: product.id,
+      name: product.name,
+      price: product.price,
+      description: product.description,
+      image: product.image,
+      category : product.category
+    });
+  };
 
     return (
         <div className="container max-w-[1280px] m-auto p-10">
@@ -97,30 +98,32 @@ const ProductDetail = () => {
                             {/* <h2 className="text-lg font-semibold mb-2">
                                 Product Description
                             </h2> */}
-                            <p>{`${product.description
-                                .slice(0, 1)
-                                .toUpperCase()}${product.description.slice(
-                                1
-                            )}`}</p>
-                        </div>
-                    )}
-                    {activeTab === "information" && (
-                        <div>
-                            {/* <h2 className="text-lg font-semibold mb-2">
+              <p>{`${product.description
+                .slice(0, 1)
+                .toUpperCase()}${product.description.slice(1)}`}</p>
+            </div>
+          )}
+          {activeTab === 'information' && (
+            <div>
+              {/* <h2 className="text-lg font-semibold mb-2">
                                 Other Information
                             </h2> */}
-                            <ul>
-                                <li>Price: <span className="font-bold">{`$${product.price}`}</span></li>
-                                <li className="capitalize">
-                                    Category: <span className="font-bold">{product.category}</span>
-                                </li>
-                            </ul>
-                        </div>
-                    )}
-                </div>
+              <ul>
+                <li>
+                  Price:{' '}
+                  <span className="font-bold">{`$${product.price}`}</span>
+                </li>
+                <li className="capitalize">
+                  Category:{' '}
+                  <span className="font-bold">{product.category}</span>
+                </li>
+              </ul>
             </div>
+          )}
         </div>
-    );
+      </div>
+    </div>
+  );
 };
 
 export default ProductDetail;
