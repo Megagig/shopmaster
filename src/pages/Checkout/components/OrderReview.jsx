@@ -23,6 +23,8 @@ const OrderReview = ({ addressInfo, paymentInfo, setStep, step, cartList }) => {
                 <div className="flex justify-between items-start">
                     <div className="flex flex-col gap-1">
                         <h4 className="font-bold text-sm">{addressInfo.fullName}</h4>
+                        <p className="text-sm">{ addressInfo.email}</p>
+                        <p className="text-sm">{ addressInfo.phoneNumber}</p>
                         <p className="text-sm">{ computeAddress()}</p>
                     </div>
 

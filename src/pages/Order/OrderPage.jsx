@@ -81,6 +81,15 @@ const OrderPage = () => {
 
                         <div className="flex justify-between text-sm">
                             <p className="font-semibold text-neutral-600">
+                                Email:
+                            </p>
+                            <p className="text-right">
+                                {addressData.email}
+                            </p>
+                        </div>
+
+                        <div className="flex justify-between text-sm">
+                            <p className="font-semibold text-neutral-600">
                                 Phone:
                             </p>
                             <p className="text-right">

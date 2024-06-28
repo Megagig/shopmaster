@@ -24,6 +24,7 @@ const Checkout = () => {
     const closeModal = () => setIsModalOpen(false);
     const [addressFormData, setAddressFormData] = useState({
         fullName: "",
+        email: "",
         phoneNumber: "",
         address: "",
         city: "",
