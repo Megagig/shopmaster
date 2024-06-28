@@ -1,7 +1,13 @@
 import React, { useState } from "react";
 import { hasNoEmptyValue } from "../utils";
 
-const PaymentMethod = ({ formData, handleChange, step, setStep, setIsSubmited }) => {
+const PaymentMethod = ({
+    formData,
+    handleChange,
+    step,
+    setStep,
+    setIsSubmited,
+}) => {
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [errorMessage, setErrorMessage] = useState("");
 
@@ -18,7 +24,7 @@ const PaymentMethod = ({ formData, handleChange, step, setStep, setIsSubmited })
 
         setTimeout(() => {
             setIsSubmited(true);
-            setIsSubmitting(false)
+            setIsSubmitting(false);
             setStep(step + 1);
         }, 3000);
     };
@@ -58,26 +64,27 @@ const PaymentMethod = ({ formData, handleChange, step, setStep, setIsSubmited })
                         />
                     </div>
 
-                    <div className="">
-                        <label
-                            htmlFor="cardNumber"
-                            className="mb-[2px] block text-base font-medium text-neutral-700"
-                        >
-                            Card Number <small className="text-red-800">*</small>
-                        </label>
-                        <input
-                            type="text"
-                            name="cardNumber"
-                            id="cardNumber"
-                            value={formData.cardNumber}
-                            onChange={handleChange}
-                            placeholder="Card Number"
-                            className="w-full rounded-md border border-[#e0e0e0] bg-white py-2 px-4 text-base text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
-                            required
-                        />
-                    </div>
-
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
+                        <div className="">
+                            <label
+                                htmlFor="cardNumber"
+                                className="mb-[2px] block text-base font-medium text-neutral-700"
+                            >
+                                Card Number{" "}
+                                <small className="text-red-800">*</small>
+                            </label>
+                            <input
+                                type="text"
+                                name="cardNumber"
+                                id="cardNumber"
+                                value={formData.cardNumber}
+                                onChange={handleChange}
+                                placeholder="Card Number"
+                                className="w-full rounded-md border border-[#e0e0e0] bg-white py-2 px-4 text-base text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
+                                required
+                            />
+                        </div>
+
                         <div className="">
                             <label
                                 htmlFor="expiry"
@@ -96,7 +103,9 @@ const PaymentMethod = ({ formData, handleChange, step, setStep, setIsSubmited })
                                 required
                             />
                         </div>
+                    </div>
 
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
                         <div className="">
                             <label
                                 htmlFor="cvv"
@@ -115,6 +124,27 @@ const PaymentMethod = ({ formData, handleChange, step, setStep, setIsSubmited })
                                 required
                             />
                         </div>
+
+                        <div className="">
+                            <label
+                                htmlFor="cardPin"
+                                className="mb-[2px] block text-base font-medium text-neutral-700"
+                            >
+                                Card Pin <small className="text-red-800">*</small>
+                            </label>
+                            <input
+                                type="password"
+                                name="cardPin"
+                                id="cardPin"
+                                value={formData.cardPin}
+                                onChange={handleChange}
+                                placeholder="Card Pin"
+                                className="w-full rounded-md border border-[#e0e0e0] bg-white py-2 px-4 text-base text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
+                                required
+                            />
+                        </div>
+                        
+
                     </div>
                 </div>
 
@@ -130,7 +160,7 @@ const PaymentMethod = ({ formData, handleChange, step, setStep, setIsSubmited })
                         className="bg-neutral-900 px-4 py-2 text-white rounded-lg mt-4"
                         onClick={submit}
                     >
-                        {isSubmitting ? 'Processing...' : 'Continue'}
+                        {isSubmitting ? "Processing..." : "Continue"}
                     </button>
                 </div>
             </form>

@@ -20,7 +20,7 @@ const OrderPage = () => {
     };
 
     return (
-        <div className="flex flex-col gap-4 p-6">
+        <div className="flex flex-col gap-4 p-6 m-auto max-w-[1280px]">
             <h1 className="text-2xl font-bold">Your Order</h1>
 
             <div className="flex flex-col md:flex-row gap-4 md:gap-6">

@@ -46,24 +46,46 @@ const Address = ({ formData, handleChange, step, setStep, setIsSubmited }) => {
                         />
                     </div>
 
-                    <div className="">
-                        <label
-                            htmlFor="phoneNumber"
-                            className="mb-[2px] block text-base font-medium text-neutral-700"
-                        >
-                            Phone Number{" "}
-                            <small className="text-red-800">*</small>
-                        </label>
-                        <input
-                            type="text"
-                            name="phoneNumber"
-                            id="phoneNumber"
-                            value={formData.phoneNumber}
-                            onChange={handleChange}
-                            placeholder="Phone Number"
-                            className="w-full rounded-md border border-[#e0e0e0] bg-white py-2 px-4 text-base text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
-                            required
-                        />
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
+                        <div className="">
+                            <label
+                                htmlFor="email"
+                                className="mb-[2px] block text-base font-medium text-neutral-700"
+                            >
+                                Email{" "}
+                                <small className="text-red-800">*</small>
+                            </label>
+                            <input
+                                type="email"
+                                name="email"
+                                id="email"
+                                value={formData.email}
+                                onChange={handleChange}
+                                placeholder="Email"
+                                className="w-full rounded-md border border-[#e0e0e0] bg-white py-2 px-4 text-base text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
+                                required
+                            />
+                        </div>
+
+                        <div className="">
+                            <label
+                                htmlFor="phoneNumber"
+                                className="mb-[2px] block text-base font-medium text-neutral-700"
+                            >
+                                Phone Number{" "}
+                                <small className="text-red-800">*</small>
+                            </label>
+                            <input
+                                type="text"
+                                name="phoneNumber"
+                                id="phoneNumber"
+                                value={formData.phoneNumber}
+                                onChange={handleChange}
+                                placeholder="Phone Number"
+                                className="w-full rounded-md border border-[#e0e0e0] bg-white py-2 px-4 text-base text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
+                                required
+                            />
+                        </div>
                     </div>
 
                     <div className="">
