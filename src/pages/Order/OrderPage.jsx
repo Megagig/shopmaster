@@ -30,14 +30,14 @@ const OrderPage = () => {
                     </h3>
 
                     <div className="flex flex-1 flex-col gap-2 px-5 py-2">
-                        <div className="flex justify-between text-sm">
+                        <div className="flex justify-between ">
                             <p className="font-semibold text-neutral-600">
                                 Reference:
                             </p>
                             <p className="text-right">12er-etua-9ujk-zxkl</p>
                         </div>
 
-                        <div className="flex justify-between text-sm">
+                        <div className="flex justify-between ">
                             <p className="font-semibold text-neutral-600">
                                 Order Date:
                             </p>
@@ -46,7 +46,7 @@ const OrderPage = () => {
                             </p>
                         </div>
 
-                        <div className="flex justify-between text-sm items-end">
+                        <div className="flex justify-between  items-end">
                             <p className="font-semibold text-neutral-600">
                                 Delivery Status:
                             </p>
@@ -55,7 +55,7 @@ const OrderPage = () => {
                             </p>
                         </div>
 
-                        <div className="flex justify-between text-sm items-end">
+                        <div className="flex justify-between  items-end">
                             <p className="font-semibold text-neutral-600">
                                 Payment Status:
                             </p>
@@ -72,14 +72,14 @@ const OrderPage = () => {
                     </h3>
 
                     <div className="flex flex-1 flex-col gap-2 px-5 py-2">
-                        <div className="flex justify-between text-sm">
+                        <div className="flex justify-between ">
                             <p className="font-semibold text-neutral-600">
                                 Name:
                             </p>
                             <p className="text-right">{addressData.fullName}</p>
                         </div>
 
-                        <div className="flex justify-between text-sm">
+                        <div className="flex justify-between ">
                             <p className="font-semibold text-neutral-600">
                                 Email:
                             </p>
@@ -88,7 +88,7 @@ const OrderPage = () => {
                             </p>
                         </div>
 
-                        <div className="flex justify-between text-sm">
+                        <div className="flex justify-between ">
                             <p className="font-semibold text-neutral-600">
                                 Phone:
                             </p>
@@ -97,7 +97,7 @@ const OrderPage = () => {
                             </p>
                         </div>
 
-                        <div className="flex justify-between text-sm">
+                        <div className="flex justify-between ">
                             <p className="font-semibold text-neutral-600">
                                 Address:
                             </p>
@@ -114,28 +114,28 @@ const OrderPage = () => {
                     </h3>
 
                     <div className="flex flex-1 flex-col gap-2 px-5 py-2">
-                        <div className="flex justify-between text-sm">
+                        <div className="flex justify-between ">
                             <p className="font-semibold text-neutral-600">
                                 Company:
                             </p>
                             <p className="text-right">Shop Master</p>
                         </div>
 
-                        <div className="flex justify-between text-sm">
+                        <div className="flex justify-between ">
                             <p className="font-semibold text-neutral-600">
                                 Email:
                             </p>
                             <p className="text-right">support@shopmaster.com</p>
                         </div>
 
-                        <div className="flex justify-between text-sm">
+                        <div className="flex justify-between ">
                             <p className="font-semibold text-neutral-600">
                                 Phone:
                             </p>
                             <p className="text-right">{"+2348001010101"}</p>
                         </div>
 
-                        <div className="flex justify-between text-sm">
+                        <div className="flex justify-between ">
                             <p className="font-semibold text-neutral-600">
                                 Address:
                             </p>
@@ -156,32 +156,32 @@ const OrderPage = () => {
                         <tr>
                             <th
                                 scope="col"
-                                className="py-3 text-sm font-normal text-left rtl:text-right text-gray-500 dark:text-gray-400"
+                                className="py-3  font-normal text-left rtl:text-right text-gray-500 dark:text-gray-400"
                             ></th>
                             <th
                                 scope="col"
-                                className="py-3 text-sm font-normal text-left rtl:text-right text-gray-500 dark:text-gray-400"
+                                className="py-3  font-normal text-left rtl:text-right text-gray-500 dark:text-gray-400"
                             >
                                 Product Name
                             </th>
 
                             <th
                                 scope="col"
-                                className="py-3 text-sm font-normal text-left rtl:text-right text-gray-500 dark:text-gray-400"
+                                className="py-3  font-normal text-left rtl:text-right text-gray-500 dark:text-gray-400"
                             >
                                 Quantity
                             </th>
 
                             <th
                                 scope="col"
-                                className="py-3 text-sm font-normal text-left rtl:text-right text-gray-500 dark:text-gray-400"
+                                className="py-3  font-normal text-left rtl:text-right text-gray-500 dark:text-gray-400"
                             >
                                 Price
                             </th>
 
                             <th
                                 scope="col"
-                                className="py-3 text-sm font-normal text-left rtl:text-right text-gray-500 dark:text-gray-400"
+                                className="py-3  font-normal text-left rtl:text-right text-gray-500 dark:text-gray-400"
                             >
                                 Amount
                             </th>
@@ -191,21 +191,21 @@ const OrderPage = () => {
                     <tbody className="bg-white divide-y divide-gray-200 dark:divide-gray-700 dark:bg-gray-900">
                         {cartList.map((order) => (
                             <tr key={order.id}>
-                                <td className="p-2 text-sm font-medium whitespace-nowrap">
+                                <td className="p-2  font-medium whitespace-nowrap">
                                     <img
                                         src={order.image}
                                         alt={order.name}
                                         className="w-10 h-10"
                                     />
                                 </td>
-                                <td className="py-2 text-sm font-medium whitespace-nowrap">
+                                <td className="py-2  font-medium whitespace-nowrap">
                                     {order.name}
                                 </td>
-                                <td className="py-2 text-sm font-medium whitespace-nowrap">
+                                <td className="py-2  font-medium whitespace-nowrap">
                                     {order.quantity}
                                 </td>
-                                <td className="py-2 text-sm font-medium whitespace-nowrap">{`$${order.price}`}</td>
-                                <td className="py-2 text-sm font-medium whitespace-nowrap">{`$${
+                                <td className="py-2  font-medium whitespace-nowrap">{`$${order.price}`}</td>
+                                <td className="py-2  font-medium whitespace-nowrap">{`$${
                                     order.price * order.quantity
                                 }`}</td>
                             </tr>
@@ -214,29 +214,29 @@ const OrderPage = () => {
                         <tr>
                             <td className=""></td>
                             <td className=""></td>
-                            <td className="py-3 text-sm font-bold whitespace-nowrap">
+                            <td className="py-3  font-bold whitespace-nowrap">
                                 Delivery Charge
                             </td>
                             <td className=""></td>
-                            <td className="py-3 text-sm font-bold whitespace-nowrap">{`$${deliveryCharge}.00`}</td>
+                            <td className="py-3  font-bold whitespace-nowrap">{`$${deliveryCharge}.00`}</td>
                         </tr>
                         <tr>
                             <td className=""></td>
                             <td className=""></td>
-                            <td className="py-3 text-sm font-bold whitespace-nowrap">
+                            <td className="py-3  font-bold whitespace-nowrap">
                                 Discount
                             </td>
                             <td className=""></td>
-                            <td className="py-3 text-sm font-bold whitespace-nowrap">{`$${discount}.00`}</td>
+                            <td className="py-3  font-bold whitespace-nowrap">{`$${discount}.00`}</td>
                         </tr>
                         <tr>
                             <td className=""></td>
                             <td className=""></td>
-                            <td className="py-3 text-sm font-bold whitespace-nowrap">
+                            <td className="py-3  font-bold whitespace-nowrap">
                                 Grand Total
                             </td>
                             <td className=""></td>
-                            <td className="py-3 text-sm font-bold whitespace-nowrap">{`$${
+                            <td className="py-3  font-bold whitespace-nowrap">{`$${
                                 getCartTotal() + deliveryCharge - discount
                             }`}</td>
                         </tr>

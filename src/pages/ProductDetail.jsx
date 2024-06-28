@@ -39,7 +39,7 @@ const ProductDetail = () => {
     };
 
     return (
-        <div className="container max-w-[1280px] m-auto p-6">
+        <div className="container max-w-[1280px] m-auto p-10">
             <div className="flex flex-col md:flex-row">
                 <div className=" p-4">
                     <img
@@ -48,18 +48,18 @@ const ProductDetail = () => {
                         className="w-60 h-60 object-contain"
                     />
                 </div>
-                <div className="flex-1 p-4">
-                    <h1 className="text-2xl font-bold mb-4">{product.title}</h1>
-                    <p className="text-xl text-gray-700 mb-4 font-bold">
+                <div className="flex flex-col gap-5 flex-1 p-4">
+                    <h1 className="text-3xl font-bold ">{product.title}</h1>
+                    <p className="text-xl text-gray-700  font-bold">
                         ${product.price}
                     </p>
-                    <p className="text-gray-700 mb-4 w-2/3">
+                    <p className="text-gray-700  w-2/3">
                         {`${product.description
                             .slice(0, 1)
                             .toUpperCase()}${product.description.slice(1)}`}
                     </p>
-                    <p className="text-gray-600 mb-4 capitalize">{product.category}</p>
-                    <div className="mb-4">
+                    <p className="text-gray-600 bg-neutral-100 py-1 px-2 rounded-lg self-start capitalize">{product.category}</p>
+                    <div className="">
                         <button onClick={handleAddToCart} className="bg-neutral-900 hover:bg-neutral-800 px-4 py-2 text-white font-bold rounded-lg">
                             Add to Cart
                         </button>

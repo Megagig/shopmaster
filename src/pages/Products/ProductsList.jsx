@@ -50,8 +50,8 @@ export const ProductsList = () => {
   };
 
   return (
-    <div className="flex flex-col gap-6 p-6 max-w-[1280px] m-auto">
-      <h1 className="text-xl font-bold">Products</h1>
+    <div className="flex flex-col gap-6 p-10 max-w-[1280px] m-auto">
+      <h1 className="text-3xl font-bold mb-4">Products</h1>
       <div id='categories_productList' className='flex justify-center gap-6'>
         <FilterBar checkboxClickedHandler={(e) => handleCheckboxChange(e.target.name)} />
         <div

@@ -22,10 +22,10 @@ const OrderReview = ({ addressInfo, paymentInfo, setStep, step, cartList }) => {
 
                 <div className="flex justify-between items-start">
                     <div className="flex flex-col gap-1">
-                        <h4 className="font-bold text-sm">{addressInfo.fullName}</h4>
-                        <p className="text-sm">{ addressInfo.email}</p>
-                        <p className="text-sm">{ addressInfo.phoneNumber}</p>
-                        <p className="text-sm">{ computeAddress()}</p>
+                        <h4 className="font-bold ">{addressInfo.fullName}</h4>
+                        <p className="">{ addressInfo.email}</p>
+                        <p className="">{ addressInfo.phoneNumber}</p>
+                        <p className="">{ computeAddress()}</p>
                     </div>
 
                     <button className="bg-neutral-200 p-1 rounded-md" onClick={() => setStep(1)}>
@@ -39,8 +39,8 @@ const OrderReview = ({ addressInfo, paymentInfo, setStep, step, cartList }) => {
 
                 <div className="flex justify-between items-start">
                     <div className="flex flex-col gap-1">
-                        <h4 className="font-bold text-sm">Debit Card</h4>
-                        <p className="text-sm">{`**** **** **** ${paymentInfo.cardNumber.slice(-4)}`}</p>
+                        <h4 className="font-bold ">Debit Card</h4>
+                        <p className="">{`**** **** **** ${paymentInfo.cardNumber.slice(-4)}`}</p>
                     </div>
 
                     <button className="bg-neutral-200 p-1 rounded-md" onClick={() => setStep(2)}>

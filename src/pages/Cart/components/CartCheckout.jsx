@@ -27,8 +27,8 @@ const CartCheckout = () => {
             {cartList.length === 0 ? (
                 <EmptyCart />
             ) : (
-                <main className="py-14 px-10 ">
-                    <h1 className="text-4xl">Cart</h1>
+                <main className="p-10 ">
+                    <h1 className="text-3xl font-bold">Cart</h1>
                     <section className="cartDetails gap-12 mt-10 flex justify-between  ">
                         <div className="cartProducts  w-full ">
                             <ul className="header border-b  w-full pb-5 flex gap-10">
