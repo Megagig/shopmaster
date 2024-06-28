@@ -1,4 +1,5 @@
 import React, { useState, useContext } from "react";
+import { useLocation } from "react-router-dom";
 import Address from "./components/Address";
 import OrderReview from "./components/OrderReview";
 import PaymentMethod from "./components/PaymentMethod";
@@ -10,14 +11,15 @@ import { FaRegCreditCard, FaRegRectangleList } from "react-icons/fa6";
 import { CartContext } from "../Cart/Context/CartContext";
 
 const Checkout = () => {
+    const {state} = useLocation();
     const [step, setStep] = useState(1);
     const {cartList, getCartTotal} = useContext(CartContext);
     const [isAddressSubmited, setIsAddressSubmited] = useState(false);
     const [isPaymentSubmited, setIsPaymentSubmited] = useState(false);
     const [isSubmittingOrder, setIsSubmittingOrder] = useState(false);
     const [deliveryCharge, setDeliveryCharge] = useState(5);
-    const [discount, setDiscount] = useState(0);
-    const [coupon, setCoupon] = useState('');
+    const [discount, setDiscount] = useState(state.discount ?? 0);
+    const [coupon, setCoupon] = useState(state.coupon ?? '');
     const [isModalOpen, setIsModalOpen] = useState(false);
 
     const openModal = () => setIsModalOpen(true);
@@ -37,10 +39,9 @@ const Checkout = () => {
         cvv: "",
         cardPin: "",
     });
-    console.log(cartList)
 
     const applyDiscount = () => {
-        if (coupon === 'ACME_FIVE') {
+        if (coupon.toLowerCase() === 'acme_five') {
             setDiscount(5);
         } else {
             setDiscount(0);
@@ -269,7 +270,7 @@ const Checkout = () => {
 
                     <div className="flex justify-between pt-2 border-t">
                         <h1 className="font-bold">Grand Total</h1>
-                        <h1 className="font-bold">{`$${getCartTotal() + deliveryCharge - discount}`}</h1>
+                        <h1 className="font-bold">{`$${(getCartTotal() + deliveryCharge - discount).toFixed(2)}`}</h1>
                     </div>
 
                     {step === 3 && (

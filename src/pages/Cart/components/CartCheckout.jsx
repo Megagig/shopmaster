@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { CartContext } from "../Context/CartContext";
 import EmptyCart from "./EmptyCart";
 import { Link } from "react-router-dom";
@@ -11,7 +11,16 @@ const CartCheckout = () => {
         removeItemFromCartList,
         getCartTotal,
     } = useContext(CartContext);
-    console.log(cartList);
+    const [coupon, setCoupon] = useState('');
+    const [discount, setDiscount] = useState(0);
+
+    const applyDiscount = () => {
+        if (coupon.toLowerCase() === 'acme_five') {
+            setDiscount(5);
+        } else {
+            setDiscount(0);
+        }
+    }
 
     return (
         <>
@@ -119,14 +128,16 @@ const CartCheckout = () => {
                                 <h3> ${getCartTotal()}</h3>
                             </div>
                             <div className="py-4 border-y grid gap-1">
-                                <small>Enter Discount Code</small>
+                                <small>Enter Coupon Code</small>
                                 <div className="flex items-center ">
                                     <input
                                         className=" border-black border rounded-s-lg p-2.5 outline-0 w-full"
                                         placeholder="e.g FLAT50"
                                         type="text"
+                                        value={coupon}
+                                        onChange={(e) => setCoupon(e.target.value)}
                                     />
-                                    <button className="border border-black bg-black text-white py-2.5 px-6 rounded-e-lg">
+                                    <button onClick={applyDiscount} className="border border-black bg-black text-white py-2.5 px-6 rounded-e-lg">
                                         Apply
                                     </button>
                                 </div>
@@ -135,17 +146,23 @@ const CartCheckout = () => {
                                     <p>Delivery Charge</p>
                                     <p>$5.00</p>
                                 </div>
+
+                                <div className="flex justify-between mt-2">
+                                    <p>Discount</p>
+                                    <p>{`$${discount ? discount : 0}.00`}</p>
+                                </div>
                             </div>
 
                             <div className="flex justify-between mt-6 font-bold">
                                 <h3>Grand Total</h3>
-                                <h3>${getCartTotal() + 5}</h3>
+                                <h3>${(getCartTotal() + 5 - discount).toFixed(2)}</h3>
                             </div>
 
                             <div className="grid mt-6">
                                 <Link
                                     to="/checkout"
                                     className="text-white text-center bg-black p-3 rounded-lg"
+                                    state={{discount, coupon}}
                                 >
                                     Proceed to Checkout
                                 </Link>
