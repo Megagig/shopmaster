@@ -30,6 +30,22 @@ export const CartProvider = ({ children }) => {
         }
       };
 
+      const setQuantityToCartItem =(item,qty) =>{
+        const isItemInCart = cartList.find((cartItem) => cartItem.id == item.id); 
+        // check if the item is already in the cartList
+        if (isItemInCart) {
+        setCartList(
+            cartList.map((cartItem) => 
+                //check if the item is in the array, then set the quantity
+            cartItem.id == item.id
+                ? { ...cartItem, quantity: qty }
+                //otherwise return the item unchanged
+                : cartItem 
+            )
+        );
+
+      }
+    }
 
       const removeFromCartList = (item) => {
         const isItemInCart = cartList.find((cartItem) => cartItem.id == item.id);
@@ -83,6 +99,7 @@ export const CartProvider = ({ children }) => {
             addToCartList,
             removeFromCartList,
             removeItemFromCartList,
+            setQuantityToCartItem,
             clearCartList,
             getCartTotal,
           }}

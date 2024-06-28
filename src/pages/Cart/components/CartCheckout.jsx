@@ -9,11 +9,12 @@ const CartCheckout = () => {
         cartList,
         addToCartList,
         removeFromCartList,
+        setQuantityToCartItem,
         removeItemFromCartList,
         getCartTotal,
     } = useContext(CartContext);
     console.log(cartList);
-
+    console.log()
     return (
         <>
             {cartList.length === 0 ? (
