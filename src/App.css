@@ -1,3 +1,10 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.header,
+.cardList {
+  display: grid;
+  grid-template-columns: 10fr 5fr 2fr 3fr 3fr;
+  gap: 2rem;
+}
